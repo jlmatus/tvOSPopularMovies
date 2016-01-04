@@ -13,10 +13,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     
     let BASE_URL = "https://api.themoviedb.org/3/movie/popular?api_key=1d91dec6e0faa67e8b7967a1c84b12e9"
+    
+    var movies = [Movie]()
+    //258,355
+    let defaultSize = CGSize(width: 315, height: 500)
+    let focusSize = CGSize(width: 345, height: 550 )
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.delegate = self
+        collectionView.dataSource = self
         downloadData()
     }
     
@@ -35,7 +42,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         if let data = data {
                             let dict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? Dictionary<String, AnyObject>
                             if let results = dict?["results"] as? [Dictionary<String,AnyObject>] {
-                                print(results)
+                                for obj in results {
+                                    let movie = Movie(movieDict: obj)
+                                    self.movies.append(movie)
+                                }
+                                
+                                // since we are calling the main thread from a background process whe mus use weak self to avoid a  retain cycle
+                                dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                                    self?.collectionView.reloadData()
+                                }
                             }
                         }
                     } catch {
@@ -54,8 +69,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovieCell", forIndexPath: indexPath) as? MovieCell {
+            let movie = movies[indexPath.row]
+            cell.configureCell(movie)
+            
+            return cell
+        }
         
-        return UICollectionViewCell()
+        return MovieCell()
         
     }
     
@@ -64,13 +85,26 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return movies.count
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(352,546)
+        return defaultSize
     }
 
 
+    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        if let previous = context.previouslyFocusedView as? MovieCell {
+            UIView.animateWithDuration(0.1, animations: {() -> Void in
+                previous.frame.size = self.defaultSize
+            })
+        }
+        
+        if let next = context.nextFocusedView as? MovieCell {
+            UIView.animateWithDuration(0.1, animations: {() -> Void in
+                next.frame.size = self.focusSize
+            })
+        }
+    }
 }
 
