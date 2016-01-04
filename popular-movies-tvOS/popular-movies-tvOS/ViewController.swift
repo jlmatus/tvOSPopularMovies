@@ -22,7 +22,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     // usually this wouldn't be implemented here, a download manager class should be created, but since this is just a test app, I decided to leave it here.
     func downloadData() {
-        //let url = NSURL(string: BASE_URL)
         if let url = NSURL(string: BASE_URL) {
             let request = NSURLRequest(URL: url)
             let session = NSURLSession.sharedSession()
