@@ -75,6 +75,9 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1100" height="640"/>
+                    <connections>
+                        <outlet property="collectionView" destination="f0L-em-fYC" id="7m0-Qo-v6q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
