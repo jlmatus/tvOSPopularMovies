@@ -16,8 +16,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var movies = [Movie]()
     //258,355
-    let defaultSize = CGSize(width: 315, height: 500)
-    let focusSize = CGSize(width: 345, height: 550 )
+    let defaultSize = CGSize(width: 305, height: 437)
+    let focusSize = CGSize(width: 335, height: 480 )
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,20 +89,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return defaultSize
+        return CGSizeMake(343, 535)
     }
 
 
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         if let previous = context.previouslyFocusedView as? MovieCell {
             UIView.animateWithDuration(0.1, animations: {() -> Void in
-                previous.frame.size = self.defaultSize
+                previous.movieImage.frame.size = self.defaultSize
             })
         }
         
         if let next = context.nextFocusedView as? MovieCell {
             UIView.animateWithDuration(0.1, animations: {() -> Void in
-                next.frame.size = self.focusSize
+                next.movieImage.frame.size = self.focusSize
             })
         }
     }

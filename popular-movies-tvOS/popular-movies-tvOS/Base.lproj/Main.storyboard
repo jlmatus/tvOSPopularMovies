@@ -27,17 +27,21 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCell" id="Qw5-Kb-E3m" customClass="MovieCell" customModule="popular_movies_tvOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="107" width="284" height="426"/>
+                                        <rect key="frame" x="0.0" y="53" width="343" height="535"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="284" height="426"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="535"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="batman" translatesAutoresizingMaskIntoConstraints="NO" id="Ye3-h0-hjz">
-                                                    <rect key="frame" x="13" y="13" width="258" height="355"/>
+                                                    <rect key="frame" x="13" y="9" width="305" height="437"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="437" id="U3B-LY-iZ4"/>
+                                                        <constraint firstAttribute="width" constant="305" id="aIx-9v-M5f"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THE DARK KNIGHT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W15-R7-Mmc">
-                                                    <rect key="frame" x="13" y="373" width="258" height="30"/>
+                                                    <rect key="frame" x="13" y="476" width="317" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="bRd-nL-GZZ"/>
                                                     </constraints>
@@ -49,14 +53,15 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="Ye3-h0-hjz" firstAttribute="top" secondItem="Qw5-Kb-E3m" secondAttribute="topMargin" constant="5" id="7xK-aK-LY3"/>
+                                            <constraint firstItem="Ye3-h0-hjz" firstAttribute="top" secondItem="Qw5-Kb-E3m" secondAttribute="topMargin" constant="1" id="7xK-aK-LY3"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="W15-R7-Mmc" secondAttribute="trailing" constant="5" id="DUU-gY-Hzb"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="Ye3-h0-hjz" secondAttribute="trailing" constant="5" id="WRQ-AC-uKU"/>
+                                            <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="Ye3-h0-hjz" secondAttribute="trailing" constant="17" id="WRQ-AC-uKU"/>
                                             <constraint firstItem="W15-R7-Mmc" firstAttribute="leading" secondItem="Qw5-Kb-E3m" secondAttribute="leadingMargin" constant="5" id="lC6-IX-q2A"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="W15-R7-Mmc" secondAttribute="bottom" constant="15" id="o6i-Vl-5oE"/>
-                                            <constraint firstItem="Ye3-h0-hjz" firstAttribute="leading" secondItem="Qw5-Kb-E3m" secondAttribute="leadingMargin" constant="5" id="sOW-gA-H3m"/>
-                                            <constraint firstItem="W15-R7-Mmc" firstAttribute="top" secondItem="Ye3-h0-hjz" secondAttribute="bottom" constant="5" id="wDV-AW-Ru4"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="W15-R7-Mmc" secondAttribute="bottom" constant="5" id="o6i-Vl-5oE"/>
+                                            <constraint firstItem="Ye3-h0-hjz" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Qw5-Kb-E3m" secondAttribute="leadingMargin" constant="5" id="sOW-gA-H3m"/>
+                                            <constraint firstItem="W15-R7-Mmc" firstAttribute="top" secondItem="Ye3-h0-hjz" secondAttribute="bottom" constant="30" id="wDV-AW-Ru4"/>
                                         </constraints>
+                                        <size key="customSize" width="343" height="535"/>
                                         <connections>
                                             <outlet property="movieImage" destination="Ye3-h0-hjz" id="F27-Mt-mMR"/>
                                             <outlet property="movieTitel" destination="W15-R7-Mmc" id="8bH-NG-O1h"/>
