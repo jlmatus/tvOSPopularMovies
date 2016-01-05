@@ -11,7 +11,7 @@ import UIKit
 class MovieCell: UICollectionViewCell {
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieTitel: UILabel!
- 
+    
     func configureCell(movie: Movie) {
         if let title = movie.title, path = movie.posterPath {
             movieTitel.text = title

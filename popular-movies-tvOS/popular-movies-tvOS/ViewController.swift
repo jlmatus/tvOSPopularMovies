@@ -12,13 +12,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let BASE_URL = "https://api.themoviedb.org/3/movie/popular?api_key=1d91dec6e0faa67e8b7967a1c84b12e9"
+    // DO NOT USE THIS API KEY, it might be revoked soon, it is there just for demo purposes
+    private let BASE_URL = "https://api.themoviedb.org/3/movie/popular?api_key=ff743742b3b6c89feb59dfc138b4c12f"
+    private let pushToMovieOverview = "MovieOverviewIdentifier"
     
     var movies = [Movie]()
-    //258,355
+    var movieImage: UIImage = UIImage()
+    var movieDescription: String = ""
+    var movieTitle: String = ""
+    
     let defaultSize = CGSize(width: 305, height: 437)
     let focusSize = CGSize(width: 335, height: 480 )
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,7 +67,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             task.resume()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -97,27 +102,38 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(343, 535)
     }
-
-
+    
+    
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-      // I'm commenting this code because it wont' be necesary, it is just an example of how to handle the focus update. 
+        // I'm commenting this code because it wont' be necesary, it is just an example of how to handle the focus update.
         /*  if let previous = context.previouslyFocusedView as? MovieCell {
-            UIView.animateWithDuration(0.1, animations: {() -> Void in
-                previous.movieImage.frame.size = self.defaultSize
-            })
+        UIView.animateWithDuration(0.1, animations: {() -> Void in
+        previous.movieImage.frame.size = self.defaultSize
+        })
         }
         
         if let next = context.nextFocusedView as? MovieCell {
-            UIView.animateWithDuration(0.1, animations: {() -> Void in
-                next.movieImage.frame.size = self.focusSize
-            })
+        UIView.animateWithDuration(0.1, animations: {() -> Void in
+        next.movieImage.frame.size = self.focusSize
+        })
         }*/
     }
     
     func tapped(gesture: UITapGestureRecognizer) {
-        if let cell = gesture.view as? MovieCell {
-            print(cell.movieTitel.text)
-            // TO DO
+        if let cell = gesture.view as? MovieCell, cellIndex = collectionView.indexPathForCell(cell), movie = movies[cellIndex.row] as Movie? ,
+            movieImage = cell.movieImage.image {
+                self.movieImage = movieImage
+                movieDescription = movie.overview
+                movieTitle = movie.title
+                performSegueWithIdentifier(pushToMovieOverview, sender: nil)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == pushToMovieOverview, let viewController = segue.destinationViewController as? OverviewViewController {
+            viewController.image = movieImage
+            viewController.overview = movieDescription
+            viewController.movie = movieTitle
         }
     }
 }

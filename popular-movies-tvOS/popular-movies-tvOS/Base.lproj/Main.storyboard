@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -78,11 +79,75 @@
                     <size key="freeformSize" width="1100" height="640"/>
                     <connections>
                         <outlet property="collectionView" destination="f0L-em-fYC" id="7m0-Qo-v6q"/>
+                        <segue destination="nMy-OK-flr" kind="show" identifier="MovieOverviewIdentifier" id="60U-Lu-Vn5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="493" y="431"/>
+        </scene>
+        <!--Overview View Controller-->
+        <scene sceneID="Pee-fo-9KU">
+            <objects>
+                <viewController id="nMy-OK-flr" customClass="OverviewViewController" customModule="popular_movies_tvOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="E4c-CF-bHO"/>
+                        <viewControllerLayoutGuide type="bottom" id="k86-pc-Sol"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QeA-9g-Vys">
+                        <rect key="frame" x="0.0" y="0.0" width="900" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IZ6-4d-6a3">
+                                <rect key="frame" x="35" y="15" width="235" height="570"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="8" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tli-kD-Tad">
+                                <rect key="frame" x="320" y="170" width="540" height="35"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="30" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1.5"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qa4-To-FXs">
+                                <rect key="frame" x="320" y="10" width="540" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="6yt-Zp-MQH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="qa4-To-FXs" secondAttribute="trailing" constant="20" id="00e-ms-ZLY"/>
+                            <constraint firstItem="IZ6-4d-6a3" firstAttribute="top" secondItem="E4c-CF-bHO" secondAttribute="bottom" constant="15" id="7gS-yY-12b"/>
+                            <constraint firstItem="qa4-To-FXs" firstAttribute="width" secondItem="Tli-kD-Tad" secondAttribute="width" id="8vo-Zn-w1L"/>
+                            <constraint firstItem="Tli-kD-Tad" firstAttribute="top" secondItem="qa4-To-FXs" secondAttribute="bottom" constant="10" id="PSg-lA-F5A"/>
+                            <constraint firstItem="IZ6-4d-6a3" firstAttribute="leading" secondItem="QeA-9g-Vys" secondAttribute="leadingMargin" constant="15" id="S3l-nd-hOi"/>
+                            <constraint firstItem="k86-pc-Sol" firstAttribute="top" secondItem="IZ6-4d-6a3" secondAttribute="bottom" constant="15" id="WeA-yU-cKE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Tli-kD-Tad" secondAttribute="trailing" constant="20" id="X97-A6-uQO"/>
+                            <constraint firstItem="Tli-kD-Tad" firstAttribute="width" secondItem="QeA-9g-Vys" secondAttribute="width" multiplier="3:5" id="a4V-58-cuw"/>
+                            <constraint firstItem="Tli-kD-Tad" firstAttribute="leading" secondItem="IZ6-4d-6a3" secondAttribute="trailing" constant="50" id="iI9-ng-Wdm"/>
+                            <constraint firstItem="qa4-To-FXs" firstAttribute="top" secondItem="E4c-CF-bHO" secondAttribute="bottom" constant="10" id="sM4-90-0RC"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="900" height="600"/>
+                    <connections>
+                        <outlet property="movieImage" destination="IZ6-4d-6a3" id="CVT-jc-wFI"/>
+                        <outlet property="movieOverview" destination="Tli-kD-Tad" id="vKb-jU-CCx"/>
+                        <outlet property="movieTite" destination="qa4-To-FXs" id="hMK-LF-F98"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MIT-dB-in4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1707" y="431"/>
         </scene>
     </scenes>
     <resources>

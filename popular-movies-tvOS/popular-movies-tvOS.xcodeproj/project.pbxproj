@@ -13,6 +13,7 @@
 		8203C23F1C3AC9CE00564991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8203C23E1C3AC9CE00564991 /* Assets.xcassets */; };
 		8203C2491C3ACFE300564991 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203C2481C3ACFE300564991 /* MovieCell.swift */; };
 		8203C24B1C3B04A900564991 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203C24A1C3B04A900564991 /* Movie.swift */; };
+		820F078B1C3C27DB004C1E17 /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820F078A1C3C27DB004C1E17 /* OverviewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8203C2401C3AC9CE00564991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8203C2481C3ACFE300564991 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		8203C24A1C3B04A900564991 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		820F078A1C3C27DB004C1E17 /* OverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				8203C2401C3AC9CE00564991 /* Info.plist */,
 				8203C2481C3ACFE300564991 /* MovieCell.swift */,
 				8203C24A1C3B04A900564991 /* Movie.swift */,
+				820F078A1C3C27DB004C1E17 /* OverviewViewController.swift */,
 			);
 			path = "popular-movies-tvOS";
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			files = (
 				8203C23A1C3AC9CE00564991 /* ViewController.swift in Sources */,
 				8203C2381C3AC9CE00564991 /* AppDelegate.swift in Sources */,
+				820F078B1C3C27DB004C1E17 /* OverviewViewController.swift in Sources */,
 				8203C24B1C3B04A900564991 /* Movie.swift in Sources */,
 				8203C2491C3ACFE300564991 /* MovieCell.swift in Sources */,
 			);
@@ -282,6 +286,7 @@
 				8203C2451C3AC9CE00564991 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
