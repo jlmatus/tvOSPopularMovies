@@ -73,6 +73,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let movie = movies[indexPath.row]
             cell.configureCell(movie)
             
+            if cell.gestureRecognizers?.count == nil {
+                let tap = UITapGestureRecognizer(target: self, action: "tapped:")
+                tap.allowedPressTypes = [NSNumber(integer: UIPressType.Select.rawValue)]
+                cell.addGestureRecognizer(tap)
+            }
+            
             return cell
         }
         
@@ -94,7 +100,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
 
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        if let previous = context.previouslyFocusedView as? MovieCell {
+      // I'm commenting this code because it wont' be necesary, it is just an example of how to handle the focus update. 
+        /*  if let previous = context.previouslyFocusedView as? MovieCell {
             UIView.animateWithDuration(0.1, animations: {() -> Void in
                 previous.movieImage.frame.size = self.defaultSize
             })
@@ -104,6 +111,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             UIView.animateWithDuration(0.1, animations: {() -> Void in
                 next.movieImage.frame.size = self.focusSize
             })
+        }*/
+    }
+    
+    func tapped(gesture: UITapGestureRecognizer) {
+        if let cell = gesture.view as? MovieCell {
+            print(cell.movieTitel.text)
+            // TO DO
         }
     }
 }
